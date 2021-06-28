@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.20)
 project(fakemon)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -9,4 +9,4 @@ add_executable(fakemon
 	sources/main.cpp
 )
 
-target_link_libraries(fakemon entt)
+target_link_libraries(fakemon PUBLIC EnTT::EnTT)

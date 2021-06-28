@@ -1,17 +1,14 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.20)
-set(CMAKE_CXX_STANDARD 20)
-set(PROJECT_NAME "entt")
+# Set up EnTT, either by finding the package directly, or by fetching it from GitHub
+include(FetchContent)
+message(STATUS "Fetching EnTT from GitHub using FetchContent.")
 
-project("${PROJECT_NAME}")
-include_directories(${PROJECT_NAME} ./sources)
+# Declare where to find glfw and what version to use
+FetchContent_Declare(
+    EnTT_external
+    GIT_REPOSITORY https://github.com/skypjack/entt.git
+    GIT_TAG v3.2.0
+    GIT_PROGRESS TRUE
+)
 
-if (CMAKE_COMPILER_IS_GNUCXX)
-	set(GCC_COVERAGE_COMPILE_FLAGS "-Wall -Wextra -Werror -Wshadow")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
-endif ()
-
-find_package(entt QUIET)
-if (NOT entt_FOUND)
-	set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
-	find_package(entt REQUIRED)
-endif()
+# Populate and make available
+FetchContent_MakeAvailable(EnTT_external)
