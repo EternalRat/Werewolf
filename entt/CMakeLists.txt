@@ -6,7 +6,7 @@ message(STATUS "Fetching EnTT from GitHub using FetchContent.")
 FetchContent_Declare(
     EnTT_external
     GIT_REPOSITORY https://github.com/skypjack/entt.git
-    GIT_TAG v3.2.0
+    GIT_TAG v3.7.1
     GIT_PROGRESS TRUE
 )
 

@@ -1,0 +1,20 @@
+# Usage:
+# FIND_PACKAGE(SFML REQUIRED)
+# [...]
+# TARGET_LINK_LIBRARIES(target_name SFML)
+
+CMAKE_MINIMUM_REQUIRED(VERSION 3.20)
+
+if (NOT SFML_FOUND)
+	INCLUDE(FetchContent)
+
+	FetchContent_Declare(SFML URL https://github.com/SFML/SFML/archive/master.tar.gz)
+	FetchContent_GetProperties(SFML)
+	if (NOT SFML_POPULATED)
+		SET(FETCHCONTENT_QUIET NO)
+		FetchContent_Populate(SFML)
+		SET(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+		ADD_SUBDIRECTORY(${SFML_SOURCE_DIR} ${SFML_BINARY_DIR})
+		SET(SFML_FOUND TRUE)
+	endif()
+endif()
